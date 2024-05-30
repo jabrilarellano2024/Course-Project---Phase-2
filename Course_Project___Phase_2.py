@@ -35,7 +35,7 @@ def GetUserRole():
         else:
             userrole = input("Enter role (Admin or User): ")
             
-def printuserinfor():
+def printuserinfo():
     UserFile = open("Users.txt", "r")
     while True:
         UserDetail = UserFile.readline()
@@ -117,21 +117,21 @@ def printInfo(empDetailList):
         EmpDetail = EmpFile.readline()
         if not EmpDetail:
             break
-        EmpDetail = EmpDetailList.replace("\n", "")
+        EmpDetail = EmpDetail.replace("\n", "")
         
         EmpList = EmpDetail.split("|")
-        fromDate = empList[0]
+        fromDate = EmpList[0]
         if (str(rundate).upper() != "ALL"):
             checkdate = datetime.strptime(fromdate, "%m/%d/%Y")
             if (checkdate < rundate):
                 continue
-        todate = empList[1]
-        empName = empList[2]
-        hours = float(empList[3])
-        hourlyRate = float(empList[4])
-        taxRate = float(empList[5])
+        todate = EmpList[1]
+        empName = EmpList[2]
+        hours = float(EmpList[3])
+        hourlyRate = float(EmpList[4])
+        taxRate = float(EmpList[5])
         grosspay, incometax, netpay = CalcTaxAndNetPay(hours, hourlyRate, taxRate)
-        print(fromDate, endDate, empName, f"{hours:,.2f}", f"{hourlyRate:,.2f}", f"{grosspay:,.2f}", f"{taxRate:,.1%}", f"{incometax:,.2f}", f"{netpay:,.2f}")
+        print(fromDate, todate, empName, f"{hours:,.2f}", f"{hourlyRate:,.2f}", f"{grosspay:,.2f}", f"{taxRate:,.1%}", f"{incometax:,.2f}", f"{netpay:,.2f}")
         totalEmployees += 1
         totalHours += hours
         totalGrossPay +=grosspay
@@ -144,7 +144,7 @@ def printInfo(empDetailList):
         empTotals["totNet"] = totalNetPay
         DetailsPrinted = True
     if (DetailsPrinted):
-        PrintTotals(empTotals)
+        printTotals(empTotals)
     else:
         print("No detail information to print")
     
@@ -183,7 +183,7 @@ if __name__ == "__main__":
                 EmpFile.write(EmpDetail)
                 
             EmpFile.close()
-        printinfo(DetailsPrinted)
+        printInfo(DetailsPrinted)
     
 
 

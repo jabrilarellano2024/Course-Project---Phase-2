@@ -1,0 +1,6 @@
+Mario|Mario1|Admin
+Luigi|Luigi2|User
+Mario1|Mario11|Admin
+Luigi|Luigi2|User
+Mario1|Mario12|Admin
+Luigi|Luigi1|User
